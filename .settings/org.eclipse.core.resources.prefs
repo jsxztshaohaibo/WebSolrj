@@ -1,6 +1,10 @@
 eclipse.preferences.version=1
 encoding//WebContent/WEB-INF/audio.html=UTF-8
 encoding//WebContent/WEB-INF/camera.html=UTF-8
+encoding//WebContent/WEB-INF/jsp/toudang_template_tiaojian.jsp=UTF-8
+encoding//WebContent/WEB-INF/jsp/toudang_template_tiaojian_cj.jsp=UTF-8
+encoding//WebContent/WEB-INF/jsp/toudang_template_tiaojian_cj_add.jsp=UTF-8
+encoding//WebContent/WEB-INF/jsp/toudang_template_tiaojian_cj_update.jsp=UTF-8
 encoding//config/jdbc.properties=UTF-8
 encoding//config/log4j.properties=UTF-8
 encoding//config/solrj.properties=UTF-8
