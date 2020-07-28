@@ -1,0 +1,182 @@
+
+<html> 
+<head> 
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312"utf-8" /> 
+<title>连续多选</title> 
+<script type="text/javascript" src="../../js/jquery/jquery-1.12.4.js"></script>
+<style type="text/css"> 
+
+
+body { 
+font: normal 11px auto "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif; 
+color: #4f6b72; 
+background: #E6EAE9; 
+} 
+
+#mytable { 
+width: 700px; 
+padding: 0; 
+margin: 0; 
+border:0px solid #c75f3e
+} 
+
+caption { 
+padding: 0 0 5px 0; 
+width: 700px; 
+font: italic 11px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif; 
+text-align: center; 
+} 
+
+th { 
+font: bold 11px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif; 
+color: #4f6b72; 
+border-right: 1px solid #C1DAD7; 
+border-bottom: 1px solid #C1DAD7; 
+border-top: 1px solid #C1DAD7; 
+letter-spacing: 2px; 
+text-transform: uppercase; 
+text-align: center; 
+padding: 6px 6px 6px 12px; 
+background: #CAE8EA  no-repeat; 
+} 
+
+th.nobg { 
+border-top: 0; 
+border-left: 0; 
+border-right: 1px solid #C1DAD7; 
+background: none; 
+} 
+
+td { 
+border-right: 1px solid #C1DAD7; 
+border-bottom: 1px solid #C1DAD7; 
+background: #fff; 
+font-size:11px; 
+padding: 6px 6px 6px 12px; 
+color: #4f6b72; 
+} 
+
+
+td.alt { 
+background: #F5FAFA; 
+color: #797268; 
+} 
+
+th.spec { 
+border-left: 1px solid #C1DAD7; 
+border-top: 0; 
+background: #fff no-repeat; 
+font: bold 10px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif; 
+} 
+
+th.specalt { 
+border-left: 1px solid #C1DAD7; 
+border-top: 0; 
+background: #f5fafa no-repeat; 
+font: bold 10px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif; 
+color: #797268; 
+} 
+/*---------for IE 5.x bug*/ 
+html>body td{ font-size:11px;} 
+body,td,th { 
+font-family: 宋体, Arial; 
+font-size: 12px; 
+} 
+</style> 
+
+<script>
+	
+/* 事件监听 */
+$(document).ready(
+	function(){
+		$(document)
+		.bind(
+			"mousedown", function(){
+							$(".row").bind(
+								"mouseover",
+								function(event) {
+										var $checkbox = $(event.target).parent().find('input');										
+										//if(!$checkbox.hasClass("moving")){											
+											if ($checkbox.prop('checked')) {
+												$checkbox.prop('checked', false);
+											} else {
+												$checkbox.prop('checked', true);
+											}											
+										//}
+										
+										//$checkbox.addClass("moving");
+								}
+							);	
+						}
+		).bind(
+			"mouseup",function(){
+						//$(".mouserover").find('input').removeClass("moving");
+						$(".row").unbind("mouseover");
+					}
+		
+		);
+		
+	}	
+); 
+</script>
+
+</head> 
+
+
+
+<body> 
+	<table id="mytable" cellspacing="0"> 
+		<caption>连续多选</caption> 
+		<tr> 
+			<th scope="col">全选</th>
+			<th scope="col">姓名</th> 
+			<th scope="col">年龄</th> 
+			<th scope="col">电话</th> 
+			<th scope="col">居住地点</th> 
+		</tr> 
+		
+		<tr class ="mouserover"> 
+			<td class="row"><input type="checkbox" id= "100" name ="ids" style="1px solid red; background-color:yellow">100</input></td> 
+			<td class="row">badwolf</td> 
+			<td class="row">100</td> 
+			<td class="row">010-110</td> 
+			<td class="row">中国北京</td> 
+		</tr>
+		<tr class ="mouserover"> 
+			<td class="row"><input type="checkbox" id= "200" name ="ids">200</td> 
+			<td class="row">badwolf</td> 
+			<td class="row">200</td> 
+			<td class="row">010-110</td> 
+			<td class="row">中国北京</td> 
+		</tr>
+		<tr class ="mouserover"> 
+			<td class="row"><input type="checkbox" id= "300" name ="ids">300</td> 
+			<td class="row">badwolf</td> 
+			<td class="row">300</td> 
+			<td class="row">010-110</td> 
+			<td class="row">中国北京</td> 
+		</tr>
+		<tr class ="mouserover"> 
+			<td class="row"><input type="checkbox" id= "400" name ="ids">400</td> 
+			<td class="row">badwolf</td> 
+			<td class="row">400</td> 
+			<td class="row">010-110</td> 
+			<td class="row">中国北京</td> 
+		</tr>
+		<tr class ="mouserover"> 
+			<td class="row"><input type="checkbox" id= "500" name ="ids">500</td> 
+			<td class="row">badwolf</td> 
+			<td class="row">500</td> 
+			<td class="row">010-110</td> 
+			<td class="row">中国北京</td> 
+		</tr>
+		<tr class ="mouserover"> 
+			<td class="row"><input type="checkbox" id= "600" name ="ids">600</td> 
+			<td class="row">badwolf</td> 
+			<td class="row">600</td> 
+			<td class="row">010-110</td> 
+			<td class="row">中国北京</td> 
+		</tr>
+	</table>	
+</body> 
+</html> 

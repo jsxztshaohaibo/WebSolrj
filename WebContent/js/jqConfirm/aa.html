@@ -1,0 +1,46 @@
+<html>
+<head>
+    <meta charset="gbk">
+    <link   type="text/css"  rel="stylesheet"  href="jquery-confirm.min.css"/>
+    <script type="text/javascript" src="jquery-1.11.1.min.js" ></script>
+	
+    <script type="text/javascript" src="jquery-confirm.js" ></script>
+	<script type="text/javascript">
+        function test_confirm() {
+			
+            $.confirm({
+                title: 'XXX',
+                content: 'XXXX',
+				type:'red',
+				boxWidth: '200px',
+				useBootstrap: true,
+                buttons: {
+                    ok: {
+                        text: "YES",
+                        btnClass: 'btn-primary',
+                        keys: ['enter'],
+                        action: function(){
+                            alert("你点击了确认按钮！");
+
+                        }
+                    },
+                    cancel: {
+                        text: "NO",
+                        btnClass: 'btn-primary',
+                        keys: ['esc'],
+                        action:function () {
+                            alert("你点击了取消按钮！");
+                        }
+
+                    }
+                }
+            });
+        }
+
+    </script>
+</head>
+<body>
+    <button  onclick="test_confirm()">Click</button>
+</body>
+   
+</html>
