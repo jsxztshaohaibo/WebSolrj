@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+						http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
+        				http://www.springframework.org/schema/mvc 
+        				http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
+        				http://www.springframework.org/schema/context 
+        				http://www.springframework.org/schema/context/spring-context-4.0.xsd">
+    <!-- 配置资源文件 -->
+    <!-- 
+	    <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"> -->
+			<!--单个properties  文件的配置  -->
+			<!-- <property name="locations" value="classpath:solrj.properties"/> -->
+			
+			<!--多个properties  文件的配置  -->
+			<!--<property name="locations">
+				<list>
+					<value>classpath:solrj01.properties</value>
+					<value>classpath:solrj02.properties</value>
+				</list>
+			</property>
+		</bean>
+	-->
+	<!-- 需要添加 context 标签,且多个资源文件的时候需要加上 ignore-unresolvable="true" 解决如果在一个资源文件中找不到全部的属性报错的问题-->
+	<context:property-placeholder location="classpath:solrj.properties" ignore-unresolvable="true"/>
+	
+    
+    
+    <!-- 扫描@Controler @Service -->
+	<context:component-scan base-package="com.jsxztshaohaibo" />
+	
+	<!-- 注解驱动 -->
+	<mvc:annotation-driven />
+	<!-- 视图解释器 -->
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/WEB-INF/jsp/" /><!-- 最后 一个  / 不能少 ,代表的是目录-->
+		<property name="suffix" value=".jsp" />
+	</bean>
+	
+	<!-- 配置solrj  就是要实际使用的solrj的服务接口 -->
+	<bean id="solrServer"  class="org.apache.solr.client.solrj.impl.HttpSolrServer">
+		<constructor-arg value="${baseUrl}"/>
+	</bean>
+</beans>

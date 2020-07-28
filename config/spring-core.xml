@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       
+       xmlns:context="http://www.springframework.org/schema/context"
+       
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        				   http://www.springframework.org/schema/beans/spring-beans.xsd
+        				   http://www.springframework.org/schema/context
+        				   http://www.springframework.org/schema/context/spring-context.xsd
+        				   ">
+
+	<!-- <bean class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer"> -->
+		<!--单个properties  文件的配置  -->
+		<!-- <property name="locations" value="classpath:jdbc/jdbc.properties"/> -->
+		
+		<!--多个properties  文件的配置  -->
+		<!--<property name="locations">
+			<list>
+				<value>classpath:jdbc/jdbc01.properties</value>
+				<value>classpath:jdbc/jdbc02.properties</value>
+			</list>
+		</property>
+		
+	</bean> -->
+	
+	
+	
+	<!-- 自动扫描 1.添加spring-aop.jar 2.xml中增加context命名空间 3.增加如下代码  -->
+	
+	<!-- 先扫描当前包，如果没有找到，则再扫描子包 -->			
+	<!-- <context:component-scan base-package="com.jsxztshaohaibo"></context:component-scan> -->
+	
+	<!-- 只扫描子包，不扫描当前包 -->			
+	<!-- <context:component-scan base-package="com.jsxztshaohaibo.*"></context:component-scan> -->
+	<context:component-scan base-package="com.jsxztshaohaibo"></context:component-scan>
+
+
+	<!-- 需要添加 context 标签,且多个资源文件的时候需要加上 ignore-unresolvable="true" 解决如果在一个资源文件中找不到全部的属性报错的问题-->
+	<context:property-placeholder location="classpath:jdbc.properties" ignore-unresolvable="true"/>
+
+
+<!-- ------------------配置两个数据源---------->	
+	<!-- MySQL 数据库连接池 -->
+	<bean id="MySQLDBCPDataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+		<property name="driverClassName" value="${jdbc.mysql.driver}" />
+		<property name="url" value="${jdbc.mysql.url}" />
+		<property name="username" value="${jdbc.mysql.username}" />
+		<property name="password" value="${jdbc.mysql.password}" />
+	</bean>
+
+	<!-- Oracle 数据库连接池 -->
+    <bean id="OracleDBCPDataSource" class="org.apache.commons.dbcp.BasicDataSource"  destroy-method="close">
+        <property name="driverClassName" value="${jdbc.oracle.driver}"/>
+        <property name="url" value="${jdbc.oracle.url}"/>
+        <property name="username" value="${jdbc.oracle.username}"/>
+        <property name="password" value="${jdbc.oracle.password}"/>
+        
+        
+        <property name="initialSize" value="${jdbc.initialSize}"/>
+        <property name="minIdle" value="${jdbc.minIdle}"/>
+        <property name="maxIdle" value="${jdbc.maxIdle}"/>
+        <property name="maxActive" value="${jdbc.maxActive}"/>
+        <property name="maxWait" value="${jdbc.maxWait}"/>
+      <!--   <property name="defaultAutoCommit" value="${jdbc.defaultAutoCommit}"/>
+        <property name="removeAbandoned" value="${jdbc.removeAbandoned}"/>
+        <property name="removeAbandonedTimeout" value="${jdbc.removeAbandonedTimeout}"/>
+        <property name="testWhileIdle" value="${jdbc.testWhileIdle}"/>
+        <property name="timeBetweenEvictionRunsMillis" value="${jdbc.timeBetweenEvictionRunsMillis}"/>
+        <property name="numTestsPerEvictionRun" value="${jdbc.numTestsPerEvictionRun}"/>
+        <property name="minEvictableIdleTimeMillis" value="${jdbc.minEvictableIdleTimeMillis}"/> -->
+    </bean>
+    
+<!--------------------配置 动态切换数据源的工具类----------------------->	   
+    <bean id="multipleDataSource" class="com.jsxztshaohaibo.common.datasource.DynamicDataSource">
+        <property name="defaultTargetDataSource" ref="OracleDBCPDataSource"/>
+        <property name="targetDataSources">
+            <map>
+                <entry key="mySql" value-ref="MySQLDBCPDataSource"/>
+                <entry key="oracle" value-ref="OracleDBCPDataSource"/>
+            </map>
+        </property>
+    </bean>
+ 
+    
+<!--------------------配置  org.mybatis.spring.SqlSessionFactoryBean ----------------------->	    
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="multipleDataSource"/>
+    </bean>
+
+
+<!-- 注册Spring JDBC  模板对象，可以baseDAO 注入，其他DAOImpl 里注入baseDAO 对象，就可以通过baseDAO获取jdbctemplate-->
+	<bean id="baseDAOImpl" class="com.jsxztshaohaibo.dao.impl.BaseDAOImpl">
+		<property name="dataSource" ref="MySQLDBCPDataSource" />
+	</bean>
+
+	</beans>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>摄像头调用</title>
+</head>
+<body>
+<div id="contentHolder">
+    <video id="video" width="320" height="320" autoplay></video>
+    <button id="picture" style="display:block" >拍照</button>
+    <canvas style="display:block" id="canvas" width="320" height="320"></canvas>
+    <button id="sc" style="display:block" >上传</button>
+</div>
+
+<div id="show"></div>
+
+<script>
+//判断浏览器是否支持调取摄像头、麦克风
+window.onload = function () {
+    var shower = document.getElementById('show');
+    navigator.getUserMedia = navigator.getUserMedia ||
+                      navigator.webkitGetUserMedia ||
+                      navigator.mozGetUserMedia ||
+                      navigator.msGetUserMedia;
+
+    if(navigator.getUserMedia){
+        shower.innerHTML = "支持调取摄像头麦克风";
+    } else {
+        shower.innerHTML = "抱歉不支持";
+    }
+}
+
+
+
+    navigator.getUserMedia = navigator.getUserMedia ||
+    navigator.webkitGetUserMedia ||
+    navigator.mozGetUserMedia;
+    if (navigator.getUserMedia) {
+        navigator.getUserMedia({ audio: true, video: { width: 320, height: 320 } },
+                function(stream) {
+                    var video = document.getElementById("video");
+                    video.src = window.URL.createObjectURL(stream);
+                    video.onloadedmetadata = function(e) {
+                        console.log('nihao44eee4aaaaddda');
+                        video.play();
+                    };
+                },
+                function(err) {
+                    console.log("The following error occurred: " + err.name);
+                }
+        );
+    } else {
+        console.log("getUserMedia not supported");
+    }
+    var context = document.getElementById("canvas").getContext("2d");
+    document.getElementById("picture").addEventListener("click", function () {
+        context.drawImage(video, 0, 0, 320, 320);
+    });
+    document.getElementById("sc").addEventListener("click", function () {
+        var imgData=document.getElementById("canvas").toDataURL("image/png");
+        var data=imgData.substr(22);
+        $.post('recorder/target/sc',{'sj':data});
+    });
+</script>
+</body>
+</html>

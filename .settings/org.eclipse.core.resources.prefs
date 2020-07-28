@@ -1,0 +1,8 @@
+eclipse.preferences.version=1
+encoding//WebContent/WEB-INF/audio.html=UTF-8
+encoding//WebContent/WEB-INF/camera.html=UTF-8
+encoding//config/jdbc.properties=UTF-8
+encoding//config/log4j.properties=UTF-8
+encoding//config/solrj.properties=UTF-8
+encoding//src/com/jsxztshaohaibo/TestDict.java=UTF-8
+encoding//src/com/jsxztshaohaibo/common/utils/dynamicDataSourceUtils/DynamicDataSource.java=UTF-8

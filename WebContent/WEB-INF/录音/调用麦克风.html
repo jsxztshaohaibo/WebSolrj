@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script type="text/javascript" src="jquery-1.7.1.min.js"></script>
+
+
+</head>
+
+<body>
+      <audio controls autoplay></audio>
+ 
+        <input type="button" value="开始录音" onclick="startRecording()"/>  
+        <input type="button" value="获取全部录音" onclick="obtainRecord()"/> 
+        <input type="button" value="获取录音截取录音" onclick="obtainRecord2()"/>  
+        <input type="button" value="停止录音" onclick="stopRecord()"/>  
+        <input type="button" value="播放录音" onclick="playRecord()"/>  
+        <ul class="aaa">
+           <li>点击链接可以测试</li>
+        </ul>
+ <script type="text/javascript" src="HZRecorder.js?v=2"></script>
+ <script>
+  var audio = document.querySelector('audio'),recorder;
+
+        var recorder;  
+            var audio = document.querySelector('audio');  
+              
+            function startRecording() {  
+                HZRecorder.get(function (rec) {  
+                    recorder = rec;  
+					 console.log(recorder)
+                    recorder.start();  
+                });  
+            }  
+              
+              
+            function obtainRecord(){  
+                var record = recorder.getBlob();  
+               // debugger;  
+            };  
+              
+            function stopRecord(){  
+                recorder.stop();  
+            };  
+              
+            function playRecord(){  
+                recorder.play(audio);  
+            }; 
+           
+		  
+		  
+		   
+           //获取录音截取录音
+		    function obtainRecord2(){  
+			    //获取录音
+                var url = recorder.getSplitBlob(); 
+				
+				$("ul").append("<li>"+url+"</li>");
+               // debugger;  
+            };  
+			
+			$("ul").on("click","li",function(){
+				audio.src =$(this).html();
+		    });
+     
+</script>
+
+
+
+</body>
+</html>
