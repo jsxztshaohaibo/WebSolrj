@@ -39,9 +39,15 @@ window.onload = function () {
         navigator.getUserMedia({ audio: true, video: { width: 320, height: 320 } },
                 function(stream) {
                     var video = document.getElementById("video");
-                    video.src = window.URL.createObjectURL(stream);
+					try{
+					 video.src = window.URL.createObjectURL(stream);//谷歌浏览器启用该方法
+					}catch(e){
+						console.log(e);
+						video.srcObject = stream;
+					}
+                   
                     video.onloadedmetadata = function(e) {
-                        console.log('nihao44eee4aaaaddda');
+                        console.log('begin to load stream...');
                         video.play();
                     };
                 },
@@ -58,8 +64,9 @@ window.onload = function () {
     });
     document.getElementById("sc").addEventListener("click", function () {
         var imgData=document.getElementById("canvas").toDataURL("image/png");
+        alert(imgData);
         var data=imgData.substr(22);
-        $.post('recorder/target/sc',{'sj':data});
+        //$.post('recorder/target/sc',{'sj':data});
     });
 </script>
 </body>

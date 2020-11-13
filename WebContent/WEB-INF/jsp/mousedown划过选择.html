@@ -91,27 +91,32 @@ $(document).ready(
 	function(){
 		$(document)
 		.bind(
-			"mousedown", function(){
+			"mousedown", function(event){
+							var $checkbox = $(event.target).parent().find('input').addClass("moving");;	
 							$(".row").bind(
-								"mouseover",
+								"mousemove",
 								function(event) {
-										var $checkbox = $(event.target).parent().find('input');										
-										//if(!$checkbox.hasClass("moving")){											
+										
+										var $checkbox = $(event.target).parent().find('input');	
+										
+										if(!$checkbox.hasClass("moving")){											
 											if ($checkbox.prop('checked')) {
 												$checkbox.prop('checked', false);
 											} else {
 												$checkbox.prop('checked', true);
 											}											
-										//}
+										}
 										
-										//$checkbox.addClass("moving");
+										$checkbox.addClass("moving");
 								}
 							);	
 						}
 		).bind(
 			"mouseup",function(){
 						//$(".mouserover").find('input').removeClass("moving");
-						$(".row").unbind("mouseover");
+						$(".row").unbind("mousemove");
+						var $checkbox = $(".row").find('input');	
+						$checkbox.removeClass("moving");
 					}
 		
 		);
@@ -134,6 +139,138 @@ $(document).ready(
 			<th scope="col">电话</th> 
 			<th scope="col">居住地点</th> 
 		</tr> 
+		
+		<tr class ="mouserover"> 
+			<td class="row"><input type="checkbox" id= "100" name ="ids" style="1px solid red; background-color:yellow">100</input></td> 
+			<td class="row">badwolf</td> 
+			<td class="row">100</td> 
+			<td class="row">010-110</td> 
+			<td class="row">中国北京</td> 
+		</tr>
+		<tr class ="mouserover"> 
+			<td class="row"><input type="checkbox" id= "200" name ="ids">200</td> 
+			<td class="row">badwolf</td> 
+			<td class="row">200</td> 
+			<td class="row">010-110</td> 
+			<td class="row">中国北京</td> 
+		</tr>
+		<tr class ="mouserover"> 
+			<td class="row"><input type="checkbox" id= "300" name ="ids">300</td> 
+			<td class="row">badwolf</td> 
+			<td class="row">300</td> 
+			<td class="row">010-110</td> 
+			<td class="row">中国北京</td> 
+		</tr>
+		<tr class ="mouserover"> 
+			<td class="row"><input type="checkbox" id= "400" name ="ids">400</td> 
+			<td class="row">badwolf</td> 
+			<td class="row">400</td> 
+			<td class="row">010-110</td> 
+			<td class="row">中国北京</td> 
+		</tr>
+		<tr class ="mouserover"> 
+			<td class="row"><input type="checkbox" id= "500" name ="ids">500</td> 
+			<td class="row">badwolf</td> 
+			<td class="row">500</td> 
+			<td class="row">010-110</td> 
+			<td class="row">中国北京</td> 
+		</tr>
+		<tr class ="mouserover"> 
+			<td class="row"><input type="checkbox" id= "600" name ="ids">600</td> 
+			<td class="row">badwolf</td> 
+			<td class="row">600</td> 
+			<td class="row">010-110</td> 
+			<td class="row">中国北京</td> 
+		</tr>
+		
+		
+		<tr class ="mouserover"> 
+			<td class="row"><input type="checkbox" id= "100" name ="ids" style="1px solid red; background-color:yellow">100</input></td> 
+			<td class="row">badwolf</td> 
+			<td class="row">100</td> 
+			<td class="row">010-110</td> 
+			<td class="row">中国北京</td> 
+		</tr>
+		<tr class ="mouserover"> 
+			<td class="row"><input type="checkbox" id= "200" name ="ids">200</td> 
+			<td class="row">badwolf</td> 
+			<td class="row">200</td> 
+			<td class="row">010-110</td> 
+			<td class="row">中国北京</td> 
+		</tr>
+		<tr class ="mouserover"> 
+			<td class="row"><input type="checkbox" id= "300" name ="ids">300</td> 
+			<td class="row">badwolf</td> 
+			<td class="row">300</td> 
+			<td class="row">010-110</td> 
+			<td class="row">中国北京</td> 
+		</tr>
+		<tr class ="mouserover"> 
+			<td class="row"><input type="checkbox" id= "400" name ="ids">400</td> 
+			<td class="row">badwolf</td> 
+			<td class="row">400</td> 
+			<td class="row">010-110</td> 
+			<td class="row">中国北京</td> 
+		</tr>
+		<tr class ="mouserover"> 
+			<td class="row"><input type="checkbox" id= "500" name ="ids">500</td> 
+			<td class="row">badwolf</td> 
+			<td class="row">500</td> 
+			<td class="row">010-110</td> 
+			<td class="row">中国北京</td> 
+		</tr>
+		<tr class ="mouserover"> 
+			<td class="row"><input type="checkbox" id= "600" name ="ids">600</td> 
+			<td class="row">badwolf</td> 
+			<td class="row">600</td> 
+			<td class="row">010-110</td> 
+			<td class="row">中国北京</td> 
+		</tr>
+		
+		
+		<tr class ="mouserover"> 
+			<td class="row"><input type="checkbox" id= "100" name ="ids" style="1px solid red; background-color:yellow">100</input></td> 
+			<td class="row">badwolf</td> 
+			<td class="row">100</td> 
+			<td class="row">010-110</td> 
+			<td class="row">中国北京</td> 
+		</tr>
+		<tr class ="mouserover"> 
+			<td class="row"><input type="checkbox" id= "200" name ="ids">200</td> 
+			<td class="row">badwolf</td> 
+			<td class="row">200</td> 
+			<td class="row">010-110</td> 
+			<td class="row">中国北京</td> 
+		</tr>
+		<tr class ="mouserover"> 
+			<td class="row"><input type="checkbox" id= "300" name ="ids">300</td> 
+			<td class="row">badwolf</td> 
+			<td class="row">300</td> 
+			<td class="row">010-110</td> 
+			<td class="row">中国北京</td> 
+		</tr>
+		<tr class ="mouserover"> 
+			<td class="row"><input type="checkbox" id= "400" name ="ids">400</td> 
+			<td class="row">badwolf</td> 
+			<td class="row">400</td> 
+			<td class="row">010-110</td> 
+			<td class="row">中国北京</td> 
+		</tr>
+		<tr class ="mouserover"> 
+			<td class="row"><input type="checkbox" id= "500" name ="ids">500</td> 
+			<td class="row">badwolf</td> 
+			<td class="row">500</td> 
+			<td class="row">010-110</td> 
+			<td class="row">中国北京</td> 
+		</tr>
+		<tr class ="mouserover"> 
+			<td class="row"><input type="checkbox" id= "600" name ="ids">600</td> 
+			<td class="row">badwolf</td> 
+			<td class="row">600</td> 
+			<td class="row">010-110</td> 
+			<td class="row">中国北京</td> 
+		</tr>
+	
 		
 		<tr class ="mouserover"> 
 			<td class="row"><input type="checkbox" id= "100" name ="ids" style="1px solid red; background-color:yellow">100</input></td> 

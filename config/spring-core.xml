@@ -38,6 +38,7 @@
 
 	<!-- 需要添加 context 标签,且多个资源文件的时候需要加上 ignore-unresolvable="true" 解决如果在一个资源文件中找不到全部的属性报错的问题-->
 	<context:property-placeholder location="classpath:jdbc.properties" ignore-unresolvable="true"/>
+	<context:property-placeholder location="classpath:others.properties" ignore-unresolvable="true"/>
 
 
 <!-- ------------------配置两个数据源---------->	
