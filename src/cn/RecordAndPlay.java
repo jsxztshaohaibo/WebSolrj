@@ -1,3 +1,4 @@
+package cn;
 import java.io.*;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.AudioInputStream;

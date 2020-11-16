@@ -1,3 +1,4 @@
+package cn;
 import java.awt.*;
  
 import javax.swing.*;
